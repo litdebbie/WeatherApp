@@ -28,7 +28,7 @@ public class WeatherApp {
         // build API request URL with location coordinates
         String urlString = "https://api.open-meteo.com/v1/forecast?" +
                 "latitude=" + latitude + "&longitude=" + longitude +
-                "&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&timezone=America%2FChicago";
+                "&hourly=temperature_2m,relativehumidity_2m,weather_code,windspeed_10m&timezone=America%2FChicago";
 
         try {
             // call API and get response
@@ -202,8 +202,6 @@ public class WeatherApp {
         if(weatherCode == 0L) weatherCondition = "Clear";
         // cloudy
         else if(weatherCode <= 3L && weatherCode > 0L) weatherCondition = "Cloudy";
-        // foggy
-        else if (weatherCode == 45L || weatherCode == 48L) weatherCondition = "Foggy";
         // light drizzle
         else if(weatherCode == 51L || weatherCode == 53L || weatherCode == 55L) weatherCondition = "Light Drizzle";
         // freezing drizzle
