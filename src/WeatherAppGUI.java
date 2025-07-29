@@ -25,12 +25,17 @@ public class WeatherAppGUI extends JFrame {
         // make window non resizable
         setResizable(false);
 
+        // Set the background color of the content pane
+        Container contentPane = getContentPane();
+        contentPane.setBackground(Color.DARK_GRAY);
+
         addGuiComponents();
     }
 
     private void addGuiComponents() {
-        // search box
+        // SEARCH BOX
         JTextField searchBoxField = new JTextField();
+        searchBoxField.setBackground(Color.LIGHT_GRAY);
 
         // set the location and size of component
         searchBoxField.setBounds(15, 15, 351, 45);
@@ -40,13 +45,30 @@ public class WeatherAppGUI extends JFrame {
 
         add(searchBoxField);
 
-        // search button
+        // SEARCH BUTTON
         JButton searchButton = new JButton(loadImage("src/assets/search.png"));
+        // searchButton.setBackground(Color.GREEN);
 
         // change the cursor to a hand cursor when hovering over this button
         searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         searchButton.setBounds(375, 14, 47, 45);
         add(searchButton);
+
+        // WEATHER IMAGE
+        JLabel weatherConditionImage = new JLabel(loadImage("src/assets/cloudy.png"));
+        weatherConditionImage.setBounds(0, 125, 450, 217);
+        add(weatherConditionImage);
+
+        // TEMPERATURE TEXT
+        JLabel temperatureText = new JLabel("15 \u00B0C");
+        temperatureText.setBounds(0, 350, 450, 54);
+        temperatureText.setFont(new Font("Dialog", Font.BOLD, 48));
+        temperatureText.setForeground(Color.BLACK);
+
+
+        // center the text
+        temperatureText.setHorizontalAlignment(SwingConstants.CENTER);
+        add(temperatureText);
     }
 
     // used to create images in our gui components
