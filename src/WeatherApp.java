@@ -197,11 +197,14 @@ public class WeatherApp {
     // convert the weather code ot something more readable
     private static String convertWeatherCode(long weatherCode) {
         String weatherCondition = "";
+        // System.out.print(weatherCode);
 
         // clear
         if(weatherCode == 0L) weatherCondition = "Clear";
         // cloudy
         else if(weatherCode <= 3L && weatherCode > 0L) weatherCondition = "Cloudy";
+        // foggy
+        else if(weatherCode == 45L || weatherCode > 48L) weatherCondition = "Foggy";
         // light drizzle
         else if(weatherCode == 51L || weatherCode == 53L || weatherCode == 55L) weatherCondition = "Light Drizzle";
         // freezing drizzle
