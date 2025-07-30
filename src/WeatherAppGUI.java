@@ -52,6 +52,14 @@ public class WeatherAppGUI extends JFrame {
 
         add(searchBoxField);
 
+        // DISPLAY LOCATION
+        JLabel locationText = new JLabel();
+        locationText.setBounds(-5, 10, 450, 217);
+        locationText.setFont(new Font("Dialog", Font.BOLD, 26));
+        locationText.setHorizontalAlignment(SwingConstants.CENTER);
+        add(locationText);
+        locationText.setVisible(false);
+
         // WEATHER IMAGE
         JLabel weatherConditionImage = new JLabel(loadImage("src/assets/weather.png"));
         weatherConditionImage.setBounds(0, 125, 450, 217);
@@ -164,11 +172,15 @@ public class WeatherAppGUI extends JFrame {
                 double windspeed = (double) weatherData.get("windspeed");
                 windspeedText.setText("<html><b>Windspeed</b> " + windspeed + "km/h</html>");
 
+                // update location text
+                locationText.setText(WeatherApp.getLocationName(userInput));
+
                 // make all icons and text visible
                 humidtyImage.setVisible(true);
                 humidityText.setVisible(true);
                 windspeedImage.setVisible(true);
                 windspeedText.setVisible(true);
+                locationText.setVisible(true);
             }
         });
 
@@ -231,11 +243,15 @@ public class WeatherAppGUI extends JFrame {
                 double windspeed = (double) weatherData.get("windspeed");
                 windspeedText.setText("<html><b>Windspeed</b> " + windspeed + "km/h</html>");
 
+                // update location text
+                locationText.setText(WeatherApp.getLocationName(userInput));
+
                 // make all icons and text visible
                 humidtyImage.setVisible(true);
                 humidityText.setVisible(true);
                 windspeedImage.setVisible(true);
                 windspeedText.setVisible(true);
+                locationText.setVisible(true);
             }
         });
 

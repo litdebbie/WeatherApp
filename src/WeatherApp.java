@@ -49,6 +49,8 @@ public class WeatherApp {
                     resultJson.append(scanner.nextLine());
                 }
 
+                // System.out.println(resultJson);
+
                 // close scanner
                 scanner.close();
 
@@ -126,6 +128,8 @@ public class WeatherApp {
                     resultJson.append(scanner.nextLine());
                 }
 
+                // System.out.println(resultJson);
+
                 // close scanner
                 scanner.close();
 
@@ -194,7 +198,7 @@ public class WeatherApp {
         return formattedDateTime;
     }
 
-    // convert the weather code ot something more readable
+    // convert the weather code to something more readable
     private static String convertWeatherCode(long weatherCode) {
         String weatherCondition = "";
         // System.out.print(weatherCode);
@@ -223,5 +227,20 @@ public class WeatherApp {
         else if(weatherCode == 95L || weatherCode == 96L || weatherCode == 99L) weatherCondition = "Thunderstorms";
 
         return weatherCondition;
+    }
+
+    // get country of location name
+    public static String getLocationName(String locationName) {
+        // get location coordinates using the geolocation API
+        JSONArray locationData = getLocationData(locationName);
+
+        // extract country data
+        JSONObject location = (JSONObject) locationData.get(0);
+        String country = (String) location.get("country");
+        String name = (String) location.get("name");
+
+        String selectedLocation = name + ", " + country;
+
+        return selectedLocation;
     }
 }
