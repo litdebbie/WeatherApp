@@ -1,10 +1,11 @@
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -142,6 +143,10 @@ public class WeatherApp {
                 
                 // get the list of location data the API generated from the location name
                 JSONArray locationData = (JSONArray) resultsJsonObj.get("results");
+
+                // check if locationData is null. if null, display error message
+                if(locationData == null || locationData.isEmpty()) errorMessage();
+
                 return locationData;
             }
 
@@ -201,7 +206,6 @@ public class WeatherApp {
     // convert the weather code to something more readable
     private static String convertWeatherCode(long weatherCode) {
         String weatherCondition = "";
-        // System.out.print(weatherCode);
 
         // clear
         if(weatherCode == 0L) weatherCondition = "Clear";
@@ -239,8 +243,20 @@ public class WeatherApp {
         String country = (String) location.get("country");
         String name = (String) location.get("name");
 
+        if(country.equals("United States")){
+            String state = (String) location.get("admin1");
+            String selectedLocation = name + ", " + state;
+
+            return selectedLocation;
+        }
+
         String selectedLocation = name + ", " + country;
 
         return selectedLocation;
+    }
+
+    // error message
+    private static void errorMessage() {
+        JOptionPane.showMessageDialog(null, "LOCATION COULD NOT BE FOUND!", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 }
